@@ -56,7 +56,8 @@ class FaceRecognition:
         except:
             if not encoding:
                 print("载入已有人脸特征失败，请检查model_data下面是否生成了相关的人脸特征文件。")
-            pass
+            self.known_face_encodings = []
+            self.known_face_names = []
     
     #   获得所有的分类
     
@@ -225,6 +226,10 @@ class FaceRecognition:
 
     # 获取人脸信息
     def get_face_info(self, face_encodings):
+
+
+        if len(self.known_face_encodings) == 0:
+            return ["Unknown"] * len(face_encodings) 
         face_names = []
         for face_encoding in face_encodings:
             #   取出一张脸并与数据库中所有的人脸进行对比，计算得分

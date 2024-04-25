@@ -18,6 +18,7 @@ list_dir = os.listdir(os.path.join(current_dir, "face_dataset"))
 image_paths = []
 names = []
 for name in list_dir:
+    if ".jpg" not in name: continue
     image_paths.append(os.path.join(current_dir, "face_dataset", name))
     names.append(name.split("_")[0])
 
